@@ -6,17 +6,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layouts/Header';
 import Navbar from './components/layouts/Navbar';
 import Footer from './components/layouts/Footer';
-import Articles from './components/layouts/Wines';
-import Article from './components/layouts/Wine';
-import EditArticle from './components/layouts/EditWine';
+import Wines from './components/layouts/Wines';
+import Wine from './components/layouts/Wine';
 import AddWine from './components/layouts/AddWine';
+import EditWine from './components/layouts/EditWine';
 
 function App() {
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
     axios
-      .get('/articles')
+      .get('/wines')
       .then((res) => setPosts(res.data))
       .catch(error => console.log(error));
   }, [posts])
@@ -25,16 +25,16 @@ function App() {
     <div className="App">
       <Header />
       <Navbar />
-      <Route exact path='/' render={() => <Articles posts={posts} />} />
+      <Route exact path='/' render={() => <Wines posts={posts} />} />
       <Route 
-        path='/article/:id' 
-        render={(props) => <Article {...props} posts={posts} />} 
+        path='/wine/:id' 
+        render={(props) => <Wine {...props} posts={posts} />} 
       />
       <Route 
         path='/update/:id' 
-        render={(props) => <EditArticle {...props} posts={posts} />} 
+        render={(props) => <EditWine {...props} posts={posts} />} 
       />
-      <Route path='/add-article' component={AddWine} />
+      <Route path='/add-wine' component={AddWine} />
 
       <Footer />
     </div>

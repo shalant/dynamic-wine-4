@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const Articles = require('../models/articles');
+const Wines = require('../models/Wines');
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -14,48 +14,48 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-//request GET ALL articles
+//request GET ALL wines
 router.get('/', (req, res) => {
-    Articles.find()
-        .then(article => res.json(article))
+    Wines.find()
+        .then(wine => res.json(article))
         .catch(err => res.status(400).json(`Error: $(err)`));
 });
 
 
 //request add new article
-router.post('/add', upload.single('articleImage'), (req, res) => {
-    const newArticle = new Articles({
-        title: req.body.title,
-        article: req.body.article,
-        authorname: req.body.authorname,
+router.post('/add-wine', upload.single('articleImage'), (req, res) => {
+    const newWine = new Wines({
+        winery: req.body.winery,
+        name: req.body.name,
+        year: req.body.year,
         articleImage: req.file.originalname,
     });
 
-    newArticle
+    newWine
         .save()
-        .then(() => res.json('the new article was posted successfully'))
+        .then(() => res.json('the new wine was posted successfully'))
         .catch(err => res.status(400).json(`Error: ${err}`));
 })
 
 //request find article by ID
 router.get('/:id', (req, res) => {
-    Articles.findById(req.params.id)
-        .then((article) => res.json(article))
+    Wines.findById(req.params.id)
+        .then((wine) => res.json(wine))
         .catch((err) => res.status(400).json(`Error: ${err}`));        
 });
 
 //request find article by ID and UPDATE
 router.put('/update/:id', upload.single('articleImage'), (req, res) => {
-    Articles.findById(req.params.id)
-        .then((article) => {
-            article.title = req.body.title;
-            article.article = req.body.article;
-            article.authorname = req.body.authorname;
-            article.articleImage = req.file.originalname;
+    Wines.findById(req.params.id)
+        .then((wine) => {
+            wine.winery = req.body.winery;
+            wine.name = req.body.name;
+            wine.year = req.body.year;
+            wine.articleImage = req.file.originalname;
 
-            article
+            wine
                 .save()
-                .then(() => res.json('The Article is UPDATED successfully'))
+                .then(() => res.json('The Wine is UPDATED successfully'))
                 .catch(err => res.status(400).json(`Error: ${err}`))
         })
         .catch(err => res.status(400).json(`Error: ${err}`))
@@ -64,8 +64,8 @@ router.put('/update/:id', upload.single('articleImage'), (req, res) => {
 
 //request find article by and DELETE
 router.delete('/:id', (req, res) => {
-    Articles.findByIdAndDelete(req.params.id)
-        .then(() => res.json('the article is deleted!'))
+    Wines.findByIdAndDelete(req.params.id)
+        .then(() => res.json('the wine is deleted!'))
         .catch(err => res.status(400).json(`Error: ${err}`))
 });
 

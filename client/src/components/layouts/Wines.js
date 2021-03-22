@@ -10,8 +10,8 @@ const Wines = ({ posts }) => {
     const deleteWine = (id) => {
         Axios.delete(`/wines/${id}`)
             .then((response) => alert(response.data));
-            setWine(wines.filter((element) => element._id !== id));
-    };
+            setWine(Wines.filter((element) => element._id !== id));
+    }
 
     return (
         <MainContainer>
@@ -51,7 +51,8 @@ const Wines = ({ posts }) => {
     )
 }
 
-export default Articles;
+
+export default Wines;
 
 //main container
 

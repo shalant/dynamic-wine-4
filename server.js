@@ -25,8 +25,8 @@ const connection = mongoose.connection;
 connection.once('open', () => 
     console.log('mongodb connection established'));
 
-const articlesRouter = require('./routes/articles');
-app.use('/articles', articlesRouter)
+const winesRouter = require('./routes/wines');
+app.use('/wines', winesRouter)
 
 // added from github/fullstackreact at 958
 if (process.env.NODE_ENV === 'production') {

@@ -4,7 +4,7 @@ import axios from 'axios';
 import spinner from '../../spinner.gif'
 import {Link} from 'react-router-dom';
 
-const Article = props => {
+const Wine = props => {
     const [winery, setWinery] = useState('')
     const [name, setName] = useState('')
     const [year, setYear] = useState('')
@@ -43,7 +43,7 @@ const Article = props => {
 export default Wine;
 
 //main container
-const ArticleContainer = styled.div`
+const WineContainer = styled.div`
     margin: 6rem auto;
     padding: 3rem 14rem;
 
