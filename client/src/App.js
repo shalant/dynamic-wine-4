@@ -9,7 +9,7 @@ import Footer from './components/layouts/Footer';
 import Articles from './components/layouts/Articles';
 import Article from './components/layouts/Article';
 import EditArticle from './components/layouts/EditArticle';
-import AddArticle from './components/layouts/AddArticle';
+import AddWine from './components/layouts/AddWine';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -34,7 +34,7 @@ function App() {
         path='/update/:id' 
         render={(props) => <EditArticle {...props} posts={posts} />} 
       />
-      <Route path='/add-article' component={AddArticle} />
+      <Route path='/add-article' component={AddWine} />
 
       <Footer />
     </div>
