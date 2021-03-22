@@ -6,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/layouts/Header';
 import Navbar from './components/layouts/Navbar';
 import Footer from './components/layouts/Footer';
-import Articles from './components/layouts/Articles';
-import Article from './components/layouts/Article';
-import EditArticle from './components/layouts/EditArticle';
+import Articles from './components/layouts/Wines';
+import Article from './components/layouts/Wine';
+import EditArticle from './components/layouts/EditWine';
 import AddWine from './components/layouts/AddWine';
 
 function App() {

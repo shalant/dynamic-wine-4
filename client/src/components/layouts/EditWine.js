@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const EditArticle = (props) => {
-    const [title, setTitle] = useState('');
-    const [article, setArticle] = useState('');
-    const [authorname, setAuthorName] = useState('');
+const EditWine = (props) => {
+    const [winery, setWinery] = useState('');
+    const [name, setName] = useState('');
+    const [year, setYear] = useState('');
     const [message, setMessage] = useState('');
     const [fileName, setFileName] = useState('');
 
@@ -19,13 +19,13 @@ const EditArticle = (props) => {
 
     const formData = new FormData();
 
-    formData.append('title', title);
-    formData.append('article', article);
-    formData.append('authorname', authorname);
+    formData.append('winery', winery);
+    formData.append('name', name);
+    formData.append('year', year);
     formData.append('articleImage', fileName);
     
     axios
-        .put(`/articles/update/${props.match.params.id}`, formData)
+        .put(`/wines/update/${props.match.params.id}`, formData)
         .then((res) => setMessage(res.data))
         .catch((err) => {
             console.log(err);
@@ -34,11 +34,11 @@ const EditArticle = (props) => {
 
     useEffect(() => {
         axios
-            .get(`/articles/${props.match.params.id}`)
+            .get(`/wines/${props.match.params.id}`)
             .then((res)=> [
-                setTitle(res.data.title),
-                setArticle(res.data.article),
-                setAuthorName(res.data.authorname),
+                setWinery(res.data.winery),
+                setName(res.data.name),
+                setYear(res.data.year),
                 setFileName(res.data.articleImage)
             ])
             .catch((err) => {
@@ -47,36 +47,36 @@ const EditArticle = (props) => {
     }, [`${props.match.params.id}`]);
 
     return (
-        <EditArticleContainer>
+        <EditWineContainer>
             <div className='container'>
-                <h1>Edit Article</h1>
+                <h1>Edit Wine</h1>
                 <span className='message'>{message}</span>
             <form onSubmit={changeOnClick} encType='multipart/form-data'>
                 <div className="form-group">
-                    <label htmlFor="authorname">Author Name</label>
+                    <label htmlFor="winery">Winery</label>
                     <input 
                         type="text" 
-                        value={authorname}
-                        onChange={e => setAuthorName(e.target.value)}
+                        value={winery}
+                        onChange={e => setWinery(e.target.value)}
                         className="form-control" 
-                        placeholder="Author Name" 
+                        placeholder="Winery" 
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="name">NAme</label>
                     <input 
                         type="text"
-                        value={title} 
-                        onChange={e => setTitle(e.target.value)}
+                        value={name} 
+                        onChange={e => setName(e.target.value)}
                         className="form-control" 
-                        placeholder="Title" 
+                        placeholder="Name" 
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="article">Article</label>
+                    <label htmlFor="year">Year</label>
                     <textarea
-                        value={article}
-                        onChange={e => setArticle(e.target.value)}
+                        value={year}
+                        onChange={e => setYear(e.target.value)}
                         className="form-control" 
                         rows="3"
                     ></textarea>
@@ -92,19 +92,19 @@ const EditArticle = (props) => {
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                    Update Article
+                    Update Wine
                 </button>
             </form>
             </div>
-        </EditArticleContainer>
+        </EditWineContainer>
     )
 }
 
-export default EditArticle;
+export default EditWine;
 
 //main container
 
-const EditArticleContainer = styled.div`
+const EditWineContainer = styled.div`
     margin: 3rem auto;
     padding: 4rem;
     width: 31.25rem;
