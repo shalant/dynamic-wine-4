@@ -12,7 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-const uri = process.env.ATLAS_URI;
+const uri = 'mongodb+srv://doug:blah@cluster0.qo3a3.mongodb.net/dynamicwine?retryWrites=true&w=majority'
+
+//process.env.ATLAS_URI;
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
