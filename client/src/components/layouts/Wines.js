@@ -3,45 +3,45 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
 
-const Articles = ({ posts }) => {
-    const [article, setArticle] = useState([])
+const Wines = ({ posts }) => {
+    const [wine, setWine] = useState([])
    
     //DELETE article by id
-    const deleteArticle = (id) => {
-        Axios.delete(`/articles/${id}`)
+    const deleteWine = (id) => {
+        Axios.delete(`/wines/${id}`)
             .then((response) => alert(response.data));
-            setArticle(article.filter((element) => element._id !== id));
+            setWine(wines.filter((element) => element._id !== id));
     };
 
     return (
         <MainContainer>
-            {posts.map((article, key) => (
+            {posts.map((wine, key) => (
                 <div className='container' key={key} >
-                    <img src={`/uploads/${article.articleImage}`} alt='...' style={{width: '40%'}} />
+                    <img src={`/uploads/${wine.articleImage}`} alt='...' style={{width: '40%'}} />
                     <Link 
                         to={{
-                        pathname: `/article/${article._id}`
+                        pathname: `/wine/${wine._id}`
                         }}
                     >
-                        <h2>{article.title}</h2>
+                        <h2>{wine.winery}</h2>
                     </Link>
                     
-                    <p>{article.article}</p>
+                    <p>{wine.wine}</p>
                     <span className='badge badge-secondary p-2'>
-                        {article.authorname}
+                        {wine.name}
                     </span>
                     <div className='row my-5'>
                         <div className='col-sm-2'>
                             <Link 
-                                to={`/update/${article._id}`} 
+                                to={`/update/${wine._id}`} 
                                 className='btn btn-outline-success'
                             >
-                                Edit Article
+                                Edit Wine
                             </Link>
                         </div>
                         <div className='col-sm-2'>
-                            <button onClick={() => deleteArticle(article._id)} className='btn btn-outline-danger'>
-                                Delete Article
+                            <button onClick={() => deleteWine(wine._id)} className='btn btn-outline-danger'>
+                                Delete Wine
                             </button>
                         </div>
                     </div>

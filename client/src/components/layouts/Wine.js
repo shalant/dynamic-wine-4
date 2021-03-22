@@ -5,42 +5,42 @@ import spinner from '../../spinner.gif'
 import {Link} from 'react-router-dom';
 
 const Article = props => {
-    const [title, setTitle] = useState('')
-    const [article, setArticle] = useState('')
-    const [authorname, setAuthorName] = useState('')
+    const [winery, setWinery] = useState('')
+    const [name, setName] = useState('')
+    const [year, setYear] = useState('')
     const [fileName, setFileName] = useState('');
 
     useEffect(() => {
         axios
-            .get(`/articles/${props.match.params.id}`)
+            .get(`/wines/${props.match.params.id}`)
             .then((response) => [
-                setAuthorName(response.data.authorname),
-                setTitle(response.data.title),
-                setArticle(response.data.article),
+                setWinery(response.data.winery),
+                setName(response.data.name),
+                setYear(response.data.year),
                 setFileName(response.data.articleImage)
             ])
             .catch(error => console.log(error));
     }, []);
 
     return (
-        <ArticleContainer>
+        <WineContainer>
             <>
                 <img src={`/uploads/${fileName}`} alt="..." 
                     style={{margin: '0 auto', width: '40%', display: 'flex'}} />
-                <h2>{title}</h2>
-                <p>{article}</p>
-                <p className='badge badge-secondary'>{authorname}</p>
+                <h2>{winery}</h2>
+                <p>{name}</p>
+                <p className='badge badge-secondary'>{year}</p>
                 <br/>
                 <Link to='/' type="submit" className="btn btn-primary">
                     Back to Home
                 </Link>
             </>
             )}
-        </ArticleContainer>
+        </WineContainer>
     )
 }
 
-export default Article;
+export default Wine;
 
 //main container
 const ArticleContainer = styled.div`

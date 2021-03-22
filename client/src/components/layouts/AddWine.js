@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const AddArticle = () => {
-    const [title, setTitle] = useState('');
-    const [article, setArticle] = useState('');
-    const [authorname, setAuthorName] = useState('');
+const AddWine = () => {
+    const [winery, setWinery] = useState('');
+    const [name, setName] = useState('');
+    const [year, setYear] = useState('');
     const [message, setMessage] = useState('');
     const [filename, setFileName] = useState('');
 
@@ -18,18 +18,18 @@ const AddArticle = () => {
 
     const formData = new FormData();
 
-    formData.append('title', title);
-    formData.append('article', article);
-    formData.append('authorname', authorname);
+    formData.append('winery', winery);
+    formData.append('name', name);
+    formData.append('year', year);
     formData.append('articleImage', filename);
 
 
-        setTitle('');
-        setArticle('');
-        setAuthorName('');
+        setWinery('');
+        setName('');
+        setYear('');
 
         axios
-            .post('/articles/add', formData)
+            .post('/wines/add', formData)
             .then(res => setMessage(res.data))
             .catch(err => {
                 console.log(err);
@@ -37,42 +37,42 @@ const AddArticle = () => {
     };
 
     return (
-        <AddArticleContainer>
+        <AddWineContainer>
         <div className='container'>
-            <h1>Add New Article</h1>
+            <h1>Add New Wine</h1>
             <span className='message'>{message}</span>
             <form onSubmit={changeOnClick} encType='multipart/form-data'>
             <div className="form-group">
-                <label htmlFor="authorname">Author Name</label>
+                <label htmlFor="winery">Winery</label>
                 <input 
                     type="text" 
-                    value={authorname}
-                    onChange={e => setAuthorName(e.target.value)}
+                    value={winery}
+                    onChange={e => setWinery(e.target.value)}
                     className="form-control" 
-                    placeholder="Author Name" 
+                    placeholder="Winery" 
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="name">Name</label>
                 <input 
                     type="text"
-                    value={title} 
-                    onChange={e => setTitle(e.target.value)}
+                    value={name} 
+                    onChange={e => setName(e.target.value)}
                     className="form-control" 
-                    placeholder="Title" 
+                    placeholder="Name" 
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="article">Article</label>
+                <label htmlFor="year">Year</label>
                 <textarea
-                    value={article}
-                    onChange={e => setArticle(e.target.value)}
+                    value={year}
+                    onChange={e => setYear(e.target.value)}
                     className="form-control" 
                     rows="3"
                 ></textarea>
             </div>
             <div className='form-group'>
-                <label htmlFor='file'>Choose article image</label>
+                <label htmlFor='file'>Choose wine image</label>
                 <input 
                     type='file' 
                     fileName='articeImage' 
@@ -81,19 +81,19 @@ const AddArticle = () => {
                 />
             </div>
             <button type="submit" className="btn btn-primary">
-                Post Article
+                Post Wine
             </button>
         </form>
         </div>
-        </AddArticleContainer>
+        </AddWineContainer>
     )
 }
 
-export default AddArticle;
+export default AddWine;
 
 //main container
 
-const AddArticleContainer = styled.div`
+const AddWineContainer = styled.div`
     margin: 3rem auto;
     padding: 4rem;
     width: 31.25rem;
